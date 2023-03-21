@@ -6,53 +6,11 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 10:46:31 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/02/21 15:34:02 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:47:54 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	test(char *str, int nb, int j)
-{
-	while (j >= 0)
-	{
-		if (str[j] != nb % 10 + 48)
-			return (1);
-		nb /= 10;
-		j--;
-	}
-	return (0);
-}
-
-int	parsing_arg(int ac, char **av)
-{
-	int	i;
-	int	j;
-	int	nb;
-
-	i = 1;
-	while (i < ac)
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (av[i][j] < '0' || av[i][j] > '9')
-			{
-				printf("error_1\n");
-				return (0);
-			}
-			j++;
-		}
-		nb = ft_atoi(av[i]);
-		if (test(av[i], nb, j - 1) == 1)
-		{
-			printf("error_2\n");
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
 
 int	check_order(int ac, char **av)
 {
@@ -74,126 +32,67 @@ int	check_order(int ac, char **av)
 	return (1);
 }
 
-int	check_b(t_pile *pile_b, int nb)
-{
-	while (pile_b->data != nb)
-			pile_b = rotate(pile_b);
-	while (pile_b->data > pile_b->next->data)
-		pile_b = pile_b->next;
-	pile_b = pile_b->next;
-	if (pile_b->data == nb)
-	{
-		return (1);
-	}
-	else
-		return (0);
-}
-
-int	check_a(t_pile *pile_a, int nb)
-{
-	while (pile_a->data != nb)
-			pile_a = rotate(pile_a);
-	while (pile_a->data < pile_a->next->data)
-		pile_a = pile_a->next;
-	pile_a = pile_a->next;
-	if (pile_a->data == nb)
-	{
-		return (1);
-	}
-	else
-		return (0);
-}
-
 void	display_pile(t_pile *pile)
 {
-	t_pile	*tmp;
+	int	len;
+	int	i;
 
-	tmp = pile->prev;
-	while (pile->data != tmp->data)
+	len = pile_len(pile);
+	i = 0;
+	while (i < len)
 	{
 		printf("pile : %d\n", pile->data);
 		pile = pile->next;
+		i++;
 	}
-	printf("pile : %d\n", pile->data);
 
 }
 
-int	sep_mediane(t_pile **pile_a, t_pile **pile_b, int *nb_mouv, int ac)
+int	pile_len(t_pile *pile)
 {
-	int	nb_b;
-	int	i;
-	int	med;
+	int		i;
+	t_pile	*tmp;
 
-	med = mediane(*pile_a, ac);
-	nb_b = 0;
-	i = 0;
-	while (i < ac - 1)
+	if (pile->next->data == pile->data)
+		return (1);
+	tmp = pile;
+	pile = pile->next;
+	i = 1;
+	while (pile != tmp)
 	{
-		if ((*pile_a)->data >= med)
-		{
-			push_b(pile_a, pile_b);
-			nb_b++;
-			printf("pb\n");
-			*nb_mouv += 1;
-		}
-		else
-		{
-			*pile_a = rotate(*pile_a);
-			printf("ra\n");
-			*nb_mouv += 1;
-		}
+		pile = pile->next;
 		i++;
 	}
-	return (nb_b);
+	return (i);
 }
 
 int	main(int ac, char **av)
 {
-	int 	i;
-	int		lowest;
-	int		nb_b;
 	int		nb_mouv;
+	t_data	data;
 	t_pile	*pile_a;
 	t_pile	*pile_b;
 
 	if (parsing_arg(ac, av) == 0)
 		return (0);
+	pile_a = init_pile(ac, av);
 	nb_mouv = 0;
-	pile_a = init_pile(pile_a, ac, av);
 	if (check_order(ac, av) == 1)
 	{
 		display_pile(pile_a);
+		printf("nb_mouv : %d\n", nb_mouv);
 		return (0);
 	}
 	pile_b = NULL;
-	i = 0;
-	lowest = pile_a->data;
-	while (i < ac - 1)
-	{
-		if (pile_a->data < lowest)
-			lowest = pile_a->data;
-		pile_a = pile_a->next;
-		i++;
-	}
-	nb_b = 0;
-	nb_b = sep_mediane(&pile_a, &pile_b, &nb_mouv, ac);
-	pile_b = tri_b(pile_b, &nb_mouv, nb_b);
-	pile_a = tri_a(pile_a, &nb_mouv, nb_b, ac);
-	i = 0;
-	while (i < nb_b)
-	{
-		push_a(&pile_a, &pile_b);
-		printf("pb\n");
-		nb_mouv++;
-		i++;
-	}
-	while(pile_a->data != lowest)
-	{
-		pile_a = rotate(pile_a);
-		printf("ra\n");
-		nb_mouv++;
-	}
-	display_pile(pile_a);
+	data = mediane(pile_a, data, ac);
+	nb_mouv += sep(&pile_a, &pile_b, data);
+	// display_pile(pile_b);
+	printf("nb_mouv après sep : %d\n", nb_mouv);
+	pile_a = tri_a(pile_a, pile_b, &nb_mouv);
+	// printf("\n");
+	// printf("pile a :\n");
+	// display_pile(pile_a);
+	// printf("\nlen_a : %d\n", pile_len(pile_a));
 	printf("nb_mouv : %d\n", nb_mouv);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:06 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/02/21 15:00:33 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:47:53 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ t_pile	*lstnew(int content)
 	return (elem);
 }
 
-t_pile	*init_pile(t_pile *pile, int ac, char **av)
+t_pile	*init_pile(int ac, char **av)
 {
 	int		i;
+	t_pile	*pile;
 	t_pile	*tmp;
 
 	pile = lstnew(ft_atoi(av[1]));
@@ -53,6 +54,8 @@ t_pile	*lstadd_back(t_pile *pile, t_pile *new)
 {
 	t_pile	*tmp;
 
+	if (!pile)
+		return (new);
 	tmp = pile;
 	tmp->prev = new;
 	while (tmp->next != pile)
@@ -67,6 +70,8 @@ t_pile	*lstadd_front(t_pile *pile, t_pile *new)
 {
 	t_pile	*tmp;
 
+	// if (!pile->data)
+	// 	return (lstnew(new->data));
 	tmp = pile;
 	while (tmp->next != pile)
 		tmp = tmp->next;

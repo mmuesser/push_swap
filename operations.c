@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:44:39 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/02/21 15:00:34 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/01 21:12:09 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push_a(t_pile **pile_a, t_pile **pile_b)
 	}
 }
 
-void	push_b(t_pile **pile_a, t_pile **pile_b)
+void	push_b(t_pile **pile_b, t_pile **pile_a)
 {
 	if (*pile_a)
 	{

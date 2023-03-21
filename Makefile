@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SOURCE = calcul_mediane.c ft_atoi.c gest_pile.c operations.c push_swap.c tri_a.c tri_b.c
+SOURCE = operations.c calcul_mediane.c ft_atoi.c gest_pile.c push_swap.c tri_a.c check_arg.c pretri.c tri_a2.c
 
 INCLUDES = -I includes/
 
@@ -8,7 +8,7 @@ OBJS = ${SOURCE:.c=.o}
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -g3
 
 RM = rm -rf
 
