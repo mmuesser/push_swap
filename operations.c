@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:44:39 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/01 21:12:09 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:16:53 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_pile	*swap(t_pile *pile)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = pile->data;
 	pile->data = pile->next->data;
