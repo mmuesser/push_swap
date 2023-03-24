@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:56:43 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/02 18:12:01 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:11:17 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ t_data	calcul(t_data data, t_pile *pile_a, int ac);
 void	display_pile(t_pile *pile);
 int		check_order(int ac, char **av);
 t_pile  *tri_b(t_pile *pile_b, int *nb_mouv, int nb_b);
-t_pile  *tri_a(t_pile *pile_a, t_pile *pile_b, int *nb_mouv);
+void	tri_a(t_pile **pile_a, t_pile **pile_b, int *nb_mouv);
 int	pile_len(t_pile *pile);
-int		check_b(t_pile *pile_b, int nb);
-int		check_a(t_pile *pile_a, int nb);
 int	parsing_arg(int ac, char **av);
 int	sep(t_pile **pile_a, t_pile **pile_b, t_data data);
 int	calcul_lowest(t_pile *pile_a);
-int	is_trie(t_pile *pile_a, int lowest);
+int	calcul_highest(t_pile *pile);
+int	rrr(t_pile **pile_a, t_pile **pile_b, int count_a, int count_b);
+int	rr(t_pile **pile_a, t_pile **pile_b, int count_a, int count_b);
+int	r_and_rr(t_pile **pile_a, t_pile **pile_b, int count_a, int count_b);
 
 #endif

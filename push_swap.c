@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 10:46:31 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/21 22:47:54 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:39:30 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ int	pile_len(t_pile *pile)
 	int		i;
 	t_pile	*tmp;
 
-	if (pile->next->data == pile->data)
-		return (1);
 	tmp = pile;
 	pile = pile->next;
 	i = 1;
@@ -86,13 +84,13 @@ int	main(int ac, char **av)
 	pile_b = NULL;
 	data = mediane(pile_a, data, ac);
 	nb_mouv += sep(&pile_a, &pile_b, data);
-	// display_pile(pile_b);
-	printf("nb_mouv après sep : %d\n", nb_mouv);
-	pile_a = tri_a(pile_a, pile_b, &nb_mouv);
-	// printf("\n");
-	// printf("pile a :\n");
+	tri_a(&pile_a, &pile_b, &nb_mouv);
+	while (pile_a->data != calcul_lowest(pile_a))
+	{
+		pile_a = rotate(pile_a);
+		nb_mouv++;
+	}
 	// display_pile(pile_a);
-	// printf("\nlen_a : %d\n", pile_len(pile_a));
 	printf("nb_mouv : %d\n", nb_mouv);
 	return (0);
 }

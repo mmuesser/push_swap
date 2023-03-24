@@ -6,62 +6,154 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 18:10:50 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/02 18:12:09 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:34:24 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_a(t_pile *pile_a, int nb)
+int	calcul_lowest(t_pile *pile)
 {
-	while (pile_a->data != nb)
-			pile_a = rotate(pile_a);
-	while (pile_a->data < pile_a->next->data)
-		pile_a = pile_a->next;
-	pile_a = pile_a->next;
-	if (pile_a->data == nb)
-	{
-		return (1);
-	}
-	else
-		return (0);
-}
+	int	lowest;
+	int	len;
+	int	i;
 
-int	calcul_lowest(t_pile *pile_a)
-{
-	int		lowest;
-	t_pile	*tmp;
-
-	lowest = pile_a->data;
-	tmp = pile_a;
-	pile_a = pile_a->next;
-	while (pile_a->data != tmp->data)
+	len = pile_len(pile);
+	lowest = pile->data;
+	i = 0;
+	while (i < len)
 	{	
-		if (pile_a->data < lowest)
-			lowest = pile_a->data;
-		pile_a = pile_a->next;
+		if (pile->data < lowest)
+			lowest = pile->data;
+		pile = pile->next;
+		i++;
 	}
 	return (lowest);
 }
 
-int	is_trie(t_pile *pile_a, int lowest)
+int	calcul_highest(t_pile *pile)
 {
-	t_pile	*tmp;
+	int	highest;
+	int	len;
+	int	i;
 
-	tmp = pile_a;
-	pile_a = pile_a->next;
-	while (1)
-	{
-		if (check_a(pile_a, lowest) == 1)
-			return (1);
-		while (pile_a->data != tmp->data)
-		{
-			if (tmp->data > pile_a->prev->data && tmp->data < pile_a->data)
-				return (0);
-			pile_a = pile_a->next;
-		}
-		pile_a = pile_a->next;
-		tmp = pile_a;
-		pile_a = pile_a->next;
+	len = pile_len(pile);
+	highest = pile->data;
+	i = 0;
+	while (i < len)
+	{	
+		if (pile->data > highest)
+			highest = pile->data;
+		pile = pile->next;
+		i++;
 	}
+	return (highest);
+}
+
+int	rrr(t_pile **pile_a, t_pile **pile_b, int count_a, int count_b)
+{
+	int	len_a;
+	int	len_b;
+	int	nb_mouv;
+
+	nb_mouv = 0;
+	len_a = pile_len(*pile_a);
+	len_b = pile_len(*pile_b);
+	while (count_a < len_a && count_b < len_b)
+	{
+		*pile_a = reverse_rotate(*pile_a);
+		count_a++;
+		*pile_b = reverse_rotate(*pile_b);
+		count_b++;
+		// printf("rrr\n");
+		nb_mouv++;
+	}
+	while (count_a < len_a)
+	{
+		*pile_a = reverse_rotate(*pile_a);
+		count_a++;
+		// printf("rra\n");
+		nb_mouv++;
+	}
+	while (count_b < len_b)
+	{
+		*pile_b = reverse_rotate(*pile_b);
+		count_b++;
+		// printf("rrb\n");
+		nb_mouv++;
+	}
+	return (nb_mouv);
+}
+
+int	rr(t_pile **pile_a, t_pile **pile_b, int count_a, int count_b)
+{
+	int	nb_mouv;
+
+	nb_mouv = 0;
+	while (count_a > 0 && count_b > 0)
+	{
+		*pile_a = rotate(*pile_a);
+		count_a--;
+		*pile_b = rotate(*pile_b);
+		count_b--;
+		// printf("rr\n");
+		nb_mouv++;
+	}
+	while (count_a > 0)
+	{
+		*pile_a = rotate(*pile_a);
+		count_a--;
+		// printf("ra\n");
+		nb_mouv++;
+	}
+	while (count_b > 0)
+	{
+		*pile_b = rotate(*pile_b);
+		count_b--;
+		// printf("rb\n");
+		nb_mouv++;
+	}
+	return (nb_mouv);
+}
+
+int	r_and_rr(t_pile **pile_a, t_pile **pile_b, int count_a, int count_b)
+{
+	int	nb_mouv;
+
+	nb_mouv = 0;
+	if (count_a > (pile_len(*pile_a) / 2))
+	{
+		while (count_a < pile_len(*pile_a))
+		{
+			*pile_a = reverse_rotate(*pile_a);
+			nb_mouv++;
+			// printf("rra\n");
+			count_a++;
+		}
+		while (count_b > 0)
+		{
+			*pile_b = rotate(*pile_b);
+			nb_mouv++;
+			// printf("rb\n");
+			count_b--;
+		}
+	}
+	else
+	{
+		while (count_b < pile_len(*pile_b))
+		{
+			*pile_b = reverse_rotate(*pile_b);
+			nb_mouv++;
+			// printf("rrb\n");
+			count_b++;
+		}
+		while (count_a > 0)
+		{
+			*pile_a = rotate(*pile_a);
+			nb_mouv++;
+			// printf("ra\n");
+			count_a--;
+		}
+	}
+	return (nb_mouv);
 }
