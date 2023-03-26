@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:56:43 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/24 17:33:39 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:18:25 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int		count_b(t_pile *pile_b, int elem);
 int		count_mouv(t_pile *pile_a, t_pile *pile_b);
 int		count_mouv_2(t_pile *pile_a, t_pile *pile_b, int pb);
 int		rotate_a_and_b(t_pile **pile_a, t_pile **pile_b, int ca, int cb);
+void	free_pile(t_pile **pile);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:41:31 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/24 17:16:40 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:19:21 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ t_data	mediane(t_pile *pile, t_data data, int ac)
 		i++;
 	}
 	data.f_quartile = tmp->data;
+	free_pile(&tmp);
 	return (data);
 }

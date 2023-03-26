@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 10:46:31 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/24 17:27:19 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:19:52 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	pile_len(t_pile *pile)
 	tmp = pile;
 	pile = pile->next;
 	i = 1;
-	while (pile != tmp)
+	while (pile->data != tmp->data)
 	{
 		pile = pile->next;
 		i++;
@@ -63,28 +63,32 @@ int	pile_len(t_pile *pile)
 	return (i);
 }
 
-int	main(int ac, char **av)
+void	free_pile(t_pile **pile)
 {
-	int		nb_mouv;
-	t_data	data;
+	int	len;
+	int	i;
+
+	len = pile_len(*pile);
+	i = 0;
+	while (i < len)
+	{
+		lst_del(pile);
+		i++;
+	}
+}
+
+void	push_swap(int ac, char **av)
+{
 	t_pile	*pile_a;
 	t_pile	*pile_b;
+	t_data	data;
+	int		nb_mouv;
 
-	if (parsing_arg(ac, av) == 0)
-		return (0);
 	pile_a = init_pile(ac, av);
-	nb_mouv = 0;
-	if (check_order(ac, av) == 1)
-	{
-		display_pile(pile_a);
-		printf("nb_mouv : %d\n", nb_mouv);
-		return (0);
-	}
 	pile_b = NULL;
 	data = mediane(pile_a, data, ac);
-	nb_mouv += sep(&pile_a, &pile_b, data);
-	printf("nb_mouv apres sep : %d\n", nb_mouv);
-	tri_a(&pile_a, &pile_b, &nb_mouv);
+	nb_mouv = 0;
+	nb_mouv += sep(&pile_a, &pile_b, data);	tri_a(&pile_a, &pile_b, &nb_mouv);
 	while (pile_a->data != calcul_lowest(pile_a))
 	{
 		pile_a = reverse_rotate(pile_a);
@@ -93,5 +97,18 @@ int	main(int ac, char **av)
 	}
 	// display_pile(pile_a);
 	printf("nb_mouv : %d\n", nb_mouv);
+	free_pile(&pile_a);
+}
+
+int	main(int ac, char **av)
+{
+	if (parsing_arg(ac, av) == 0 || ac == 1)
+		return (0);
+	if (check_order(ac, av) == 1)
+	{
+		write(1, "Les éléments sont déjà dans l'ordre.\n", 37);
+		return (0);
+	}
+	push_swap(ac, av);
 	return (0);
 }

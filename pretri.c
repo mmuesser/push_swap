@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:10:38 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/24 17:29:48 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:51:06 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	sep(t_pile **pile_a, t_pile **pile_b, t_data data)
 		else
 		{
 			push_b(pile_b, pile_a);
+			write(1, "pb\n", 3);
 			nb_mouv++;
 			if ((*pile_b)->data <= data.mediane)
 			{
