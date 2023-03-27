@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SOURCE = operations.c calcul_mediane.c ft_atoi.c gest_pile.c push_swap.c tri_a.c check_arg.c pretri.c tri_a2.c
+SOURCE = operations.c calcul_mediane.c ft_atoi.c gest_pile.c push_swap.c tri_a.c check_arg.c pretri.c tri_a2.c utils.c
 
 INCLUDES = -I includes/
 

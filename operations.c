@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:44:39 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/26 19:13:44 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:42:18 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	push_b(t_pile **pile_b, t_pile **pile_a)
 t_pile	*rotate(t_pile *pile)
 {
 	if (!pile)
-		return	(NULL);
+		return (NULL);
 	pile = pile->next;
 	return (pile);
 }

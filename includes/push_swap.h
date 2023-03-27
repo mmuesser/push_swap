@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:56:43 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/26 19:18:25 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:15:10 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	push_a(t_pile **pile_a, t_pile **pile_b);
 void	push_b(t_pile **pile_b, t_pile **pile_a);
 t_pile	*rotate(t_pile *pile);
 t_pile	*reverse_rotate(t_pile *pile);
-t_data	mediane(t_pile *pile, t_data data, int ac);
+t_data	mediane(t_pile *pile);
 t_data	calcul(t_data data, t_pile *pile_a, int ac);
 void	display_pile(t_pile *pile);
 int		check_order(int ac, char **av);
 int		pile_len(t_pile *pile);
 int		parsing_arg(int ac, char **av);
-int		sep(t_pile **pile_a, t_pile **pile_b, t_data data);
+int		pretri(t_pile **pile_a, t_pile **pile_b, t_data data);
 int		calcul_lowest(t_pile *pile_a);
 int		calcul_highest(t_pile *pile);
 void	tri_a(t_pile **pile_a, t_pile **pile_b, int *nb_mouv);
@@ -58,5 +58,6 @@ int		count_mouv(t_pile *pile_a, t_pile *pile_b);
 int		count_mouv_2(t_pile *pile_a, t_pile *pile_b, int pb);
 int		rotate_a_and_b(t_pile **pile_a, t_pile **pile_b, int ca, int cb);
 void	free_pile(t_pile **pile);
+void	sort_3(t_pile **pile, int *nb_mouv);
 
 #endif

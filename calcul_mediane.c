@@ -6,25 +6,69 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:41:31 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/26 19:19:21 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:19:42 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_data	mediane(t_pile *pile, t_data data, int ac)
+int	calcul_mediane(t_data *data, t_pile **tmp, int len)
+{
+	int	i;
+
+	if (len % 2 == 0)
+		len /= 2;
+	else
+	{
+		len /= 2;
+		len++;
+	}
+	i = 1;
+	while (i < len)
+	{
+		*tmp = (*tmp)->next;
+		i++;
+	}
+	data->mediane = (*tmp)->data;
+	return (len);
+}
+
+void	calcul_t_quartile(t_data *data, t_pile **tmp, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < (len / 2))
+	{
+		*tmp = (*tmp)->next;
+		i++;
+	}
+	data->t_quartile = (*tmp)->data;
+}
+
+void	calcul_f_quartile(t_data *data, t_pile **tmp, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		*tmp = (*tmp)->next;
+		i++;
+	}
+	data->f_quartile = (*tmp)->data;
+}
+
+t_pile	*set_tmp(t_pile *pile, int len)
 {
 	t_pile	*tmp;
 	t_pile	*tmp2;
 	int		i;
 
-	tmp = NULL;
-	ac -= 1;
-	i = 0;
-	while (i < ac)
+	tmp = lstnew(pile->data);
+	i = -1;
+	while (++i < len)
 	{
-		if (!tmp)
-			tmp = lstnew(pile->data);
 		if (pile->data > tmp->data)
 		{
 			tmp2 = tmp;
@@ -39,37 +83,21 @@ t_data	mediane(t_pile *pile, t_data data, int ac)
 			tmp = tmp->prev;
 		}
 		pile = pile->next;
-		i++;
 	}
-	ac -= 1;
-	if (ac % 2 == 0)
-		ac /= 2;
-	else
-	{
-		ac /= 2;
-		ac++;
-	}
-	i = 0;
-	while (i < ac)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	data.mediane = tmp->data;
-	i = 0;
-	while (i < (ac / 2))
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	data.t_quartile = tmp->data;
-	i = 0;
-	while (i < ac)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	data.f_quartile = tmp->data;
+	return (tmp);
+}
+
+t_data	mediane(t_pile *pile)
+{
+	t_data	data;
+	t_pile	*tmp;
+	int		len;	
+
+	len = pile_len(pile);
+	tmp = set_tmp(pile, len);
+	len = calcul_mediane(&data, &tmp, len);
+	calcul_t_quartile(&data, &tmp, len);
+	calcul_f_quartile(&data, &tmp, len);
 	free_pile(&tmp);
 	return (data);
 }

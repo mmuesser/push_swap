@@ -6,44 +6,11 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:53:46 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/24 17:34:58 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:15:33 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	check_a(t_pile **pile_a, int *nb_mouv)
-{
-	int	lowest;
-	int	highest;
-
-	lowest = calcul_lowest(*pile_a);
-	highest = calcul_highest(*pile_a);
-	if ((*pile_a)->data == lowest)
-	{
-		if ((*pile_a)->next->data > (*pile_a)->prev->data)
-		{
-			*pile_a = swap(*pile_a);
-			*nb_mouv += 1;
-		}
-	}
-	else if ((*pile_a)->data == highest)
-	{
-		if ((*pile_a)->next->data > (*pile_a)->prev->data)
-		{
-			*pile_a = swap(*pile_a);
-			*nb_mouv += 1;
-		}
-	}
-	else
-	{
-		if ((*pile_a)->data > (*pile_a)->next->data)
-		{
-			*pile_a = swap(*pile_a);
-			*nb_mouv += 1;
-		}
-	}
-}
 
 int	count_mouv_2(t_pile *pile_a, t_pile *pile_b, int pb)
 {
@@ -148,7 +115,7 @@ void	tri_a(t_pile **pile_a, t_pile **pile_b, int *nb_mouv)
 	int	ca;
 	int	len_b;
 
-	check_a(pile_a, nb_mouv);
+	sort_3(pile_a, nb_mouv);
 	len_b = pile_len(*pile_b);
 	while (len_b > 0)
 	{
