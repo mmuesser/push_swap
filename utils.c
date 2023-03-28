@@ -6,26 +6,26 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:34:11 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/27 15:14:56 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:50:45 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	display_pile(t_pile *pile)
-// {
-// 	int	len;
-// 	int	i;
+void	display_pile(t_pile *pile)
+{
+	int	len;
+	int	i;
 
-// 	len = pile_len(pile);
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		printf("pile : %d\n", pile->data);
-// 		pile = pile->next;
-// 		i++;
-// 	}
-// }
+	len = pile_len(pile);
+	i = 0;
+	while (i < len)
+	{
+		printf("pile : %d\n", pile->data);
+		pile = pile->next;
+		i++;
+	}
+}
 
 int	pile_len(t_pile *pile)
 {
@@ -81,7 +81,7 @@ int	calcul_highest(t_pile *pile)
 	return (highest);
 }
 
-void	sort_3(t_pile **pile, int *nb_mouv)
+void	sort_3(t_pile **pile)
 {
 	int	lowest;
 	int	highest;
@@ -102,6 +102,6 @@ void	sort_3(t_pile **pile, int *nb_mouv)
 	if (i == 1)
 	{
 		*pile = swap(*pile);
-		*nb_mouv += 1;
+		write(1, "sa\n", 3);
 	}
 }
