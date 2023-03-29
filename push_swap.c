@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 10:46:31 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/28 23:29:39 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:05:57 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,19 @@ int	check_order(int ac, char **av)
 	return (1);
 }
 
-void	free_pile(t_pile **pile)
-{
-	int	len;
-	int	i;
-
-	len = pile_len(*pile);
-	i = 0;
-	while (i < len)
-	{
-		lst_del(pile);
-		i++;
-	}
-}
-
 t_pile	*push_swap(t_pile *pile_a, t_pile *pile_b)
 {
 	t_data	data;
 
 	data = mediane(pile_a);
-	pretri(&pile_a, &pile_b, data);
-	tri_a(&pile_a, &pile_b);
-	// while (pile_a->data != calcul_lowest(pile_a))
-	// {
-	// 	pile_a = reverse_rotate(pile_a);
-	// 	write(1, "rra\n", 4);
-	// }
-	// display_pile(pile_a);
+	if (pile_len(pile_a) == 3)
+		sort_3(&pile_a);
+	else
+	{
+		pretri(&pile_a, &pile_b, data);
+		tri_a(&pile_a, &pile_b);
+	}
+	set_a_final(&pile_a, data);
 	return (pile_a);
 }
 
@@ -70,10 +56,7 @@ int	main(int ac, char **av)
 	if (parsing_arg(ac, av) == 1 || ac == 1)
 		return (0);
 	if (check_order(ac, av) == 1)
-	{
-		write(1, "Les éléments sont déjà dans l'ordre.\n", 41);
 		return (0);
-	}
 	pile_a = init_pile(ac, av);
 	pile_b = NULL;
 	pile_a = push_swap(pile_a, pile_b);

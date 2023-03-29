@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:08:58 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/27 15:13:15 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:30:07 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_strlen(char *str)
 
 int	verif_nbr(char *str, int nb)
 {
-	int	i;
 	int	len;
 
 	len = ft_strlen(str) - 1;

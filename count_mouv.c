@@ -6,20 +6,18 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 19:14:01 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/28 22:05:56 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:30:55 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int    count_max_or_min(t_pile *pile_a, t_pile *pile_b, int ib)
+int	count_max_or_min(t_pile *pile_a, t_pile *pile_b, int ib)
 {
-	int    lowest;
-	int    highest;
-	int    count;
+	int	lowest;
+	int	count;
 
 	lowest = calcul_lowest(pile_a);
-	highest = calcul_highest(pile_a);
 	count = 0;
 	while (pile_a->data != lowest)
 	{
@@ -33,11 +31,11 @@ int    count_max_or_min(t_pile *pile_a, t_pile *pile_b, int ib)
 	return (count + ib);
 }
 
-int    count_mouv_2(t_pile *pile_a, t_pile *pile_b, int ib)
+int	count_mouv_2(t_pile *pile_a, t_pile *pile_b, int ib)
 {
-	int    count;
-	int    len_a;
-	int    i;
+	int	count;
+	int	len_a;
+	int	i;
 
 	if (pile_b->data < calcul_lowest(pile_a)
 		|| pile_b->data > calcul_highest(pile_a))
@@ -59,16 +57,16 @@ int    count_mouv_2(t_pile *pile_a, t_pile *pile_b, int ib)
 	return (count + ib);
 }
 
-int    count_mouv(t_pile *pile_a, t_pile *pile_b)
+int	count_mouv(t_pile *pile_a, t_pile *pile_b)
 {
-	int    i;
-	int    elem;
-	int    count;
-	int    count_elem;
+	int	i;
+	int	elem;
+	int	count;
+	int	count_elem;
 
 	elem = pile_b->data;
 	count = count_mouv_2(pile_a, pile_b, 0);
-	i = 1;
+	i = 0;
 	while (i < pile_len(pile_b))
 	{
 		count_elem = count_mouv_2(pile_a, pile_b, i);

@@ -6,26 +6,11 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:34:11 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/28 23:50:45 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:30:29 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	display_pile(t_pile *pile)
-{
-	int	len;
-	int	i;
-
-	len = pile_len(pile);
-	i = 0;
-	while (i < len)
-	{
-		printf("pile : %d\n", pile->data);
-		pile = pile->next;
-		i++;
-	}
-}
 
 int	pile_len(t_pile *pile)
 {
@@ -41,6 +26,20 @@ int	pile_len(t_pile *pile)
 		i++;
 	}
 	return (i);
+}
+
+void	free_pile(t_pile **pile)
+{
+	int	len;
+	int	i;
+
+	len = pile_len(*pile);
+	i = 0;
+	while (i < len)
+	{
+		lst_del(pile);
+		i++;
+	}
 }
 
 int	calcul_lowest(t_pile *pile)
@@ -81,27 +80,22 @@ int	calcul_highest(t_pile *pile)
 	return (highest);
 }
 
-void	sort_3(t_pile **pile)
+void	set_a_final(t_pile **pile_a, t_data data)
 {
 	int	lowest;
-	int	highest;
-	int	len;
-	int	i;
 
-	i = 0;
-	len = pile_len(*pile);
-	lowest = calcul_lowest(*pile);
-	highest = calcul_highest(*pile);
-	while (len > 0)
+	lowest = calcul_lowest(*pile_a);
+	while ((*pile_a)->data != lowest)
 	{
-		if ((*pile)->data == lowest && (*pile)->next->data == highest)
-			i = 1;
-		*pile = (*pile)->next;
-		len--;
-	}
-	if (i == 1)
-	{
-		*pile = swap(*pile);
-		write(1, "sa\n", 3);
+		if ((*pile_a)->data <= data.mediane)
+		{
+			*pile_a = reverse_rotate(*pile_a);
+			write(1, "rra\n", 4);
+		}
+		else
+		{
+			*pile_a = rotate(*pile_a);
+			write(1, "ra\n", 3);
+		}
 	}
 }
