@@ -1,50 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 10:46:31 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/30 20:48:04 by mmuesser         ###   ########.fr       */
+/*   Created: 2023/03/30 19:11:09 by mmuesser          #+#    #+#             */
+/*   Updated: 2023/03/30 20:53:50 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-int	check_order(int ac, char **av)
+t_pile	*checker(t_pile *pile_a, t_pile *pile_b, int ac)
 {
-	int	i;
-	int	j;
-	int	k;
+	char	**list_op;
 
-	i = 1;
-	j = 0;
-	k = 0;
-	while (i < ac - 1)
+	list_op = create_list_op();
+	if (!list_op)
 	{
-		j = ft_atoi(av[i]);
-		k = ft_atoi(av[i + 1]);
-		if (k < j)
-			return (0);
-		i++;
+		write(2, "Error\n", 6);
+		return (pile_a);
 	}
-	return (1);
-}
-
-t_pile	*push_swap(t_pile *pile_a, t_pile *pile_b)
-{
-	t_data	data;
-
-	data = mediane(pile_a);
-	if (pile_len(pile_a) <= 3)
-		sort_3(&pile_a);
+	do_op(&pile_a, &pile_b, list_op);
+	if (check_pile(pile_a, ac) == 0)
+		write(1, "OK\n", 3);
 	else
-	{
-		pretri(&pile_a, &pile_b, data);
-		tri_a(&pile_a, &pile_b);
-	}
-	set_a_final(&pile_a, data);
+		write(1, "KO\n", 3);
+	free_list_op(list_op);
 	return (pile_a);
 }
 
@@ -54,12 +37,18 @@ int	main(int ac, char **av)
 	t_pile	*pile_b;
 
 	if (parsing_arg(ac, av) == 1 || ac == 1)
+	{
+		write(2, "Error\n", 6);
 		return (0);
+	}
 	if (check_order(ac, av) == 1)
+	{
+		write(1, "OK\n", 3);
 		return (0);
+	}
 	pile_a = init_pile(ac, av);
 	pile_b = NULL;
-	pile_a = push_swap(pile_a, pile_b);
+	pile_a = checker(pile_a, pile_b, ac);
 	free_pile(&pile_a);
 	return (0);
 }
