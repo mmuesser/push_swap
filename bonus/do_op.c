@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:24:59 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/30 20:57:16 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:27:08 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	do_op2(t_pile **pile_a, t_pile **pile_b, char **list_op, int i)
 void	do_op(t_pile **pile_a, t_pile **pile_b, char **list_op)
 {
 	int	i;
-	
+
 	i = 0;
 	while (list_op[i])
 	{

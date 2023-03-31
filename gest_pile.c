@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:59:06 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/29 14:39:59 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:11:39 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,18 @@ void	lst_del(t_pile **pile)
 
 	if (*pile)
 	{
-		tmp = (*pile)->next;
-		(*pile)->prev->next = (*pile)->next;
-		(*pile)->next->prev = (*pile)->prev;
-		free(*pile);
-		*pile = tmp;
+		if ((*pile)->next->data == (*pile)->data)
+		{
+			free(*pile);
+			*pile = NULL;
+		}
+		else
+		{
+			tmp = (*pile)->next;
+			(*pile)->prev->next = (*pile)->next;
+			(*pile)->next->prev = (*pile)->prev;
+			free(*pile);
+			*pile = tmp;
+		}
 	}
 }
