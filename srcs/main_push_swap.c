@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   main_push_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 11:01:11 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/03 17:39:34 by mmuesser         ###   ########.fr       */
+/*   Created: 2023/04/03 11:06:42 by mmuesser          #+#    #+#             */
+/*   Updated: 2023/04/03 17:39:47 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 int	main(int ac, char **av)
 {
@@ -23,15 +23,10 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	if (check_order(ac, av) == 1)
-	{
-		write(1, "OK\n", 3);
 		return (0);
-	}
 	pile_a = init_pile(ac, av);
-	if (!pile_a)
-		return (0);
 	pile_b = NULL;
-	pile_a = checker(pile_a, pile_b, ac);
+	pile_a = push_swap(pile_a, pile_b);
 	free_pile(&pile_a);
 	return (0);
 }
