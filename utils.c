@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:34:11 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/29 15:30:29 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:02:12 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,22 +80,22 @@ int	calcul_highest(t_pile *pile)
 	return (highest);
 }
 
-void	set_a_final(t_pile **pile_a, t_data data)
+int	check_order(int ac, char **av)
 {
-	int	lowest;
+	int	i;
+	int	j;
+	int	k;
 
-	lowest = calcul_lowest(*pile_a);
-	while ((*pile_a)->data != lowest)
+	i = 1;
+	j = 0;
+	k = 0;
+	while (i < ac - 1)
 	{
-		if ((*pile_a)->data <= data.mediane)
-		{
-			*pile_a = reverse_rotate(*pile_a);
-			write(1, "rra\n", 4);
-		}
-		else
-		{
-			*pile_a = rotate(*pile_a);
-			write(1, "ra\n", 3);
-		}
+		j = ft_atoi(av[i]);
+		k = ft_atoi(av[i + 1]);
+		if (k < j)
+			return (0);
+		i++;
 	}
+	return (1);
 }

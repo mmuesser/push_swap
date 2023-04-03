@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:18:53 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/31 17:44:49 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:04:51 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,12 @@ char	**create_list_op(void)
 
 	str = ft_read();
 	if (!str)
-	{
-		write(1, "Error 3\n", 8);
 		return (NULL);
-	}
 	list_op = ft_split(str, '\n');
 	if (verif_op(list_op) == 1)
 	{
 		free(str);
 		free_list_op(list_op);
-		write(1, "Error 4\n", 8);
 		return (NULL);
 	}
 	free(str);
