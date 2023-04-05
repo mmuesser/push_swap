@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:34:11 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/03 12:02:12 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/05 16:35:19 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	pile_len(t_pile *pile)
 	int		i;
 	t_pile	*tmp;
 
+	if (!pile)
+		return (0);
 	tmp = pile;
 	pile = pile->next;
 	i = 1;
-	while (pile->data != tmp->data)
+	while (pile != tmp)
 	{
 		pile = pile->next;
 		i++;
@@ -93,7 +95,7 @@ int	check_order(int ac, char **av)
 	{
 		j = ft_atoi(av[i]);
 		k = ft_atoi(av[i + 1]);
-		if (k < j)
+		if (k <= j)
 			return (0);
 		i++;
 	}

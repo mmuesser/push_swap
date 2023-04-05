@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:08:58 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 11:33:12 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:25:03 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,18 @@ int	verif_nbr(char *str, int nb)
 	int				len;
 	unsigned int	nbr;
 
+	if ((nb < 0 && str[0] != '-' || nb > 0 && str[0] == '-'))
+		return (1);
 	if (nb < 0)
 		nbr = -nb;
 	else
 		nbr = nb;
 	len = ft_strlen(str) - 1;
+	while (len >= 0 && str[len] == ' ')
+		len--;
 	while (len >= 0)
 	{
-		if (str[len] != nbr % 10 + 48 && (nbr != 0 && str[len] != '-'))
+		if (str[len] != nbr % 10 + 48 && (nbr != 0 && str[0] != '-'))
 			return (1);
 		nbr /= 10;
 		len--;

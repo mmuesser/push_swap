@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:44:39 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/27 10:42:18 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:42:55 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,39 @@ t_pile	*swap(t_pile *pile)
 	return (pile);
 }
 
-void	push_a(t_pile **pile_a, t_pile **pile_b)
+void	push_a(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
 {
+	t_pile	*tmp;
+
 	if (*pile_b)
 	{
-		if (!(*pile_a))
-			*pile_a = lstnew((*pile_b)->data);
+		tmp = (*pile_a);
+		if (!tmp)
+			tmp = lstnew((*pile_b)->data);
 		else
-			*pile_a = lstadd_front(*pile_a, lstnew((*pile_b)->data));
+			tmp = lstadd_front(*pile_a, lstnew((*pile_b)->data));
 		lst_del(pile_b);
+		if (!tmp)
+			exit(error(pile_a, pile_b, data, str));
+		*pile_a = tmp;
 	}
 }
 
-void	push_b(t_pile **pile_b, t_pile **pile_a)
+void	push_b(t_pile **pile_b, t_pile **pile_a, t_data *data, char **str)
 {
+	t_pile	*tmp;
+
 	if (*pile_a)
 	{
-		if (!(*pile_b))
-			*pile_b = lstnew((*pile_a)->data);
+		tmp = (*pile_b);
+		if (!tmp)
+			tmp = NULL /*lstnew((*pile_a)->data)*/;
 		else
-			*pile_b = lstadd_front(*pile_b, lstnew((*pile_a)->data));
+			tmp = NULL /*lstadd_front(*pile_b, lstnew((*pile_a)->data))*/;
 		lst_del(pile_a);
+		if (!tmp)
+			exit(error(pile_a, pile_b, data, str));
+		*pile_b = tmp;
 	}
 }
 

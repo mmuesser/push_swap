@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:53:46 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/29 15:29:50 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:42:35 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	sort_3(t_pile **pile)
 	}
 }
 
-void	tri_a(t_pile **pile_a, t_pile **pile_b)
+void	tri_a(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
 {
 	int	elem;
 	int	cb;
@@ -101,7 +101,7 @@ void	tri_a(t_pile **pile_a, t_pile **pile_b)
 		cb = count_b(*pile_b, elem);
 		ca = count_a(*pile_a, elem);
 		rotate_a_and_b(pile_a, pile_b, ca, cb);
-		push_a(pile_a, pile_b);
+		push_a(pile_a, pile_b, data, str);
 		write(1, "pa\n", 3);
 		len_b--;
 	}

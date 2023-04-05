@@ -2,13 +2,14 @@ NAME = push_swap
 
 NAME_BONUS = checker
 
-SRCS = srcs/operations.c srcs/ft_atoi.c srcs/gest_pile.c srcs/check_arg.c srcs/utils.c
+SRCS = srcs/operations.c srcs/ft_atoi.c srcs/gest_pile.c srcs/check_arg.c srcs/utils.c \
+		srcs/utils_2.c bonus/utils_2.c
 
 SRCS_MANDATORY = srcs/main_push_swap.c srcs/tri_a.c srcs/count_mouv.c srcs/set_piles.c \
-				 srcs/pretri.c srcs/push_swap.c srcs/calcul_mediane.c
+				 srcs/pretri.c srcs/calcul_mediane.c srcs/calcul_mediane2.c
 
-SRCS_BONUS = bonus/check_pile.c bonus/checker.c bonus/create_list_op.c \
-			 bonus/do_op.c bonus/utils.c bonus/utils_2.c bonus/main_checker.c
+SRCS_BONUS = bonus/check_pile.c bonus/create_list_op.c \
+			 bonus/do_op.c bonus/utils.c bonus/main_checker.c
 
 INCLUDES = -I ./
 
