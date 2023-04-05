@@ -45,6 +45,6 @@ clean:
 fclean:		clean
 			${RM} ${NAME} ${NAME_BONUS}
 
-re:			fclean ${NAME}
+re:			fclean all
 
 .PHONY:		all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:11:09 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/03 12:05:24 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:40:52 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_pile	*checker(t_pile *pile_a, t_pile *pile_b, int ac)
 	list_op = create_list_op();
 	if (!list_op)
 	{
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 		return (pile_a);
 	}
 	do_op(&pile_a, &pile_b, list_op);
