@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:08:58 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/03 18:11:19 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:33:12 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	verif_nbr(char *str, int nb)
 {
 	int				len;
 	unsigned int	nbr;
-	
+
 	if (nb < 0)
 		nbr = -nb;
 	else

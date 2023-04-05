@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:06:42 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/03 17:39:47 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:31:46 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 
 	if (parsing_arg(ac, av) == 1 || ac == 1)
 	{
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	if (check_order(ac, av) == 1)
