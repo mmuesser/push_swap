@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 19:25:15 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/03/31 17:45:47 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:08:57 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,4 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	}
 	return (s1[i] - s2[i]);
-}
-
-void	free_list_op(char **list_op)
-{
-	int	i;
-
-	i = 0;
-	while (list_op[i])
-	{
-		free(list_op[i]);
-		list_op[i] = NULL;
-		i++;
-	}
-	free(list_op);
 }

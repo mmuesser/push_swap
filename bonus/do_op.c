@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:24:59 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 20:49:12 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:42:40 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ void	do_op2(t_pile **pile_a, t_pile **pile_b, char **list_op, int i)
 void	do_op(t_pile **pile_a, t_pile **pile_b, char **list_op)
 {
 	int		i;
-	t_data	*data;
-
-	data = NULL;
 	i = 0;
 	while (list_op[i])
 	{
@@ -44,9 +41,9 @@ void	do_op(t_pile **pile_a, t_pile **pile_b, char **list_op)
 		else if (ft_strcmp(list_op[i], "sb") == 0)
 			*pile_b = swap(*pile_b);
 		else if (ft_strcmp(list_op[i], "pa") == 0)
-			push_a(pile_a, pile_b, data, list_op);
+			push_a(pile_a, pile_b, NULL, list_op);
 		else if (ft_strcmp(list_op[i], "pb") == 0)
-			push_b(pile_b, pile_a, data, list_op);
+			push_b(pile_b, pile_a, NULL, list_op);
 		else if (ft_strcmp(list_op[i], "ra") == 0)
 			*pile_a = rotate(*pile_a);
 		else if (ft_strcmp(list_op[i], "rb") == 0)

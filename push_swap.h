@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 17:56:43 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 20:59:35 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:45:01 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_pile	*set_tmp2(t_pile *pile, t_pile *tmp, int len);
 t_pile	*set_tmp(t_pile *pile, int len);
 
 /*check_arg.c*/
-int		ft_strlen(char *str);
+int		check_double(t_pile *pile_a);
 int		verif_nbr(char *str, int nb);
 int		check_nbr(int ac, char **av);
 int		check_char(int ac, char **av);
@@ -66,6 +66,7 @@ void	lst_del(t_pile **pile);
 
 /*main_push_swap.c*/
 t_pile	*push_swap(t_pile *pile_a, t_pile *pile_b);
+int		main(int ac, char **av);
 
 /*operations.c*/
 t_pile	*swap(t_pile *pile);
@@ -75,9 +76,9 @@ t_pile	*rotate(t_pile *pile);
 t_pile	*reverse_rotate(t_pile *pile);
 
 /*pretri.c*/
-void	pretri_2(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str);
-void	fq_and_tq(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str);
-void	pretri(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str);
+void	pretri_2(t_pile **pile_a, t_pile **pile_b, t_data *data);
+void	fq_and_tq(t_pile **pile_a, t_pile **pile_b, t_data *data);
+void	pretri(t_pile **pile_a, t_pile **pile_b, t_data *data);
 
 /*set_piles.c*/
 void	rrr(t_pile **pile_a, t_pile **pile_b, int ca, int cb);
@@ -90,7 +91,13 @@ void	rotate_a_and_b(t_pile **pile_a, t_pile **pile_b, int ca, int cb);
 int		count_b(t_pile *pile_b, int elem);
 int		count_a(t_pile *pile_a, int elem);
 void	sort_3(t_pile **pile);
-void	tri_a(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str);
+void	tri_a(t_pile **pile_a, t_pile **pile_b, t_data *data);
+
+/*utils_2.c*/
+int		error(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str);
+int		ft_strlen(char *str);
+void	set_a_final(t_pile **pile_a, t_data *data);
+void	free_str(char **str);
 
 /*utils.c*/
 int		pile_len(t_pile *pile);
@@ -98,12 +105,5 @@ void	free_pile(t_pile **pile);
 int		calcul_lowest(t_pile *pile);
 int		calcul_highest(t_pile *pile);
 int		check_order(int ac, char **av);
-
-/*utils_2.c*/
-void	set_a_final(t_pile **pile_a, t_data *data);
-int		error(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str);
-int		check_double(t_pile *pile_a);
-
-void	free_all(char **str);
 
 #endif

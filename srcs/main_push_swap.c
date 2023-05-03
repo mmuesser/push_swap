@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:06:42 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 20:47:37 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:44:05 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 t_pile	*push_swap(t_pile *pile_a, t_pile *pile_b)
 {
 	t_data	*data;
-	char	**str;
 
-	str = NULL;
 	if (check_double(pile_a) == 1)
 	{
 		free_pile(&pile_a);
@@ -29,9 +27,8 @@ t_pile	*push_swap(t_pile *pile_a, t_pile *pile_b)
 		sort_3(&pile_a);
 	else
 	{
-		// printf("test\n");
-		pretri(&pile_a, &pile_b, data, str);
-		tri_a(&pile_a, &pile_b, data, str);
+		pretri(&pile_a, &pile_b, data);
+		tri_a(&pile_a, &pile_b, data);
 	}
 	set_a_final(&pile_a, data);
 	free(data);

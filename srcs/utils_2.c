@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:09:46 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 20:41:13 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:08:49 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,18 @@ int	error(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
 	if (data)
 		free(data);
 	if (str)
-		free_all(str);
+		free_str(str);
 	return (0);
 }
 
-int	check_double(t_pile *pile_a)
+int	ft_strlen(char *str)
 {
-	int	len_a;
-	int	nb;
 	int	i;
-	int	j;
 
-	len_a = pile_len(pile_a);
 	i = 0;
-	while (i < len_a)
-	{
-		nb = pile_a->data;
-		pile_a = pile_a->next;
-		j = 1;
-		while (j < len_a)
-		{
-			if (nb == pile_a->data)
-				return (1);
-			pile_a = pile_a->next;
-			j++;
-		}
-		pile_a = pile_a->next;
+	while (str[i])
 		i++;
-	}
-	return (0);
+	return (i);
 }
 
 void	set_a_final(t_pile **pile_a, t_data *data)
@@ -70,4 +53,19 @@ void	set_a_final(t_pile **pile_a, t_data *data)
 			write(1, "ra\n", 3);
 		}
 	}
+}
+
+void	free_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		str[i] = NULL;
+		i++;
+	}
+	free(str);
+	str = NULL;
 }

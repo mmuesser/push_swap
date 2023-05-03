@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:44:39 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 20:42:55 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:42:21 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	push_b(t_pile **pile_b, t_pile **pile_a, t_data *data, char **str)
 	{
 		tmp = (*pile_b);
 		if (!tmp)
-			tmp = NULL /*lstnew((*pile_a)->data)*/;
+			tmp = lstnew((*pile_a)->data);
 		else
-			tmp = NULL /*lstadd_front(*pile_b, lstnew((*pile_a)->data))*/;
+			tmp = lstadd_front(*pile_b, lstnew((*pile_a)->data));
 		lst_del(pile_a);
 		if (!tmp)
 			exit(error(pile_a, pile_b, data, str));

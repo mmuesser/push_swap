@@ -6,7 +6,7 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:01:11 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 20:16:33 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:10:01 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_pile	*checker(t_pile *pile_a, t_pile *pile_b, int ac)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	free_list_op(list_op);
+	free_str(list_op);
 	if (pile_b)
 		free_pile(&pile_b);
 	return (pile_a);

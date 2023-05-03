@@ -6,20 +6,20 @@
 /*   By: mmuesser <mmuesser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:10:38 by mmuesser          #+#    #+#             */
-/*   Updated: 2023/04/05 20:59:58 by mmuesser         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:43:50 by mmuesser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pretri_2(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
+void	pretri_2(t_pile **pile_a, t_pile **pile_b, t_data *data)
 {
 	int	len_a;
 
 	len_a = pile_len(*pile_a);
 	while (len_a > 3)
 	{
-		push_b(pile_b, pile_a, data, str);
+		push_b(pile_b, pile_a, data, NULL);
 		write(1, "pb\n", 3);
 		if ((*pile_b)->data <= data->f_quartile)
 		{
@@ -30,9 +30,9 @@ void	pretri_2(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
 	}
 }
 
-void	fq_and_tq(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
+void	fq_and_tq(t_pile **pile_a, t_pile **pile_b, t_data *data)
 {
-	push_b(pile_b, pile_a, data, str);
+	push_b(pile_b, pile_a, data, NULL);
 	write(1, "pb\n", 3);
 	if ((*pile_b)->data <= data->mediane)
 	{
@@ -41,7 +41,7 @@ void	fq_and_tq(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
 	}
 }
 
-void	pretri(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
+void	pretri(t_pile **pile_a, t_pile **pile_b, t_data *data)
 {
 	int	i;
 	int	len_a;
@@ -53,7 +53,7 @@ void	pretri(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
 		if ((*pile_a)->data > data->f_quartile
 			&& (*pile_a)->data <= data->t_quartile)
 		{
-			fq_and_tq(pile_a, pile_b, data, str);
+			fq_and_tq(pile_a, pile_b, data);
 		}
 		else
 		{
@@ -62,5 +62,5 @@ void	pretri(t_pile **pile_a, t_pile **pile_b, t_data *data, char **str)
 		}
 		i++;
 	}
-	pretri_2(pile_a, pile_b, data, str);
+	pretri_2(pile_a, pile_b, data);
 }
